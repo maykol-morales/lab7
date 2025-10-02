@@ -1,4 +1,4 @@
-from logfire import configure, instrument_fastapi
+#from logfire import configure, instrument_fastapi
 from fastapi import FastAPI
 
 from app import mongo
@@ -6,8 +6,8 @@ from app.routes import users, papers
 
 app = FastAPI()
 
-configure()
-instrument_fastapi(app)
+#configure()
+#instrument_fastapi(app)
 
 
 @app.get("/")
