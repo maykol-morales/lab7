@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.schemas.papers import Paper
+from app.schemas import Paper
 
 router = APIRouter(prefix="/papers")
 
