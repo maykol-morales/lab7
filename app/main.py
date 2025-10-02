@@ -1,16 +1,22 @@
-import logfire
+from logfire import configure, instrument_fastapi
 from fastapi import FastAPI
+
+from mongomock import MongoClient
+from app.routes import users, papers
 
 app = FastAPI()
 
-logfire.configure()
-logfire.instrument_fastapi(app)
+configure()
+instrument_fastapi(app)
+
+client = MongoClient()
+db = client["paperly"]
+
 
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+app.include_router(users.router)
+app.include_router(papers.router)
