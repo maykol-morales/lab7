@@ -1,11 +1,12 @@
-import pytest
 from fastapi.testclient import TestClient
+
 from app.main import app
 from app.mongo import db
 
 client = TestClient(app)
 
-def test_create_paper_integrity(sqlite_session):
+
+def test_create_paper_integrity():
     payload = {
         "name": "AI Research Paper",
         "authors": ["John Doe"],
