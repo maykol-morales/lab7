@@ -1,4 +1,4 @@
-#from logfire import configure, instrument_fastapi
+import logfire
 from fastapi import FastAPI
 
 from app import mongo
@@ -6,12 +6,13 @@ from app.routes import users, papers
 
 app = FastAPI()
 
-#configure()
-#instrument_fastapi(app)
+logfire.configure()
+logfire.instrument_fastapi(app)
 
 
 @app.get("/")
 async def root():
+    logfire.info("Stable")
     return {"message": "Hello World"}
 
 
